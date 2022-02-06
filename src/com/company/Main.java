@@ -48,7 +48,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Collection<product> p = new ArrayList<product>();
+        List<product> p = new ArrayList<product>();
         Scanner s = new Scanner(System.in);
         Scanner s1 = new Scanner(System.in);
         int ch;
@@ -77,6 +77,27 @@ public class Main {
                     double profit = s.nextDouble();
                     p.add(new product(pname, bp, sp, aprod, profit));
                     break;
+                case 2:
+                    boolean found = false;
+                    System.out.print("Enter your product name to delete :");
+                    String name = s1.nextLine();
+                    System.out.println("----------------------------");
+                    Iterator<product> i = p.iterator();
+                    while(i.hasNext()){
+                        product e = i.next();
+                        if(e.getProdname().equals(name))  {
+                            i.remove();
+                            found = true;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Your product is not found");
+                    }else{
+                        System.out.println("Your product is deleted successfully");
+                        System.out.println("To see the new product list enter 5");
+                    }
+                    System.out.println("----------------------------");
+                    break;
                 case 5:
                     System.out.println("-----------------------------------------------------------------------------");
                     System.out.printf("%10s %20s %10s", "Product Name", "Available Product", "Profit");
@@ -90,7 +111,9 @@ public class Main {
                     System.out.println("-----------------------------------------------------------------------------");
                     break;
                 case 6:
+                    System.out.println();
                     System.out.println("Available balance: " + balance + " BDT");
+                    System.out.println();
                     break;
             }
         }while(ch!=7);
